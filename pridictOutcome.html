@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .prediction {
+            font-weight: bold;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Predictor</h1>
+        <button onclick="predictOutcome()">Predict Outcome</button>
+        <p>Your Prediction: <span class="prediction" id="predictionResult">-</span></p>
+    </div>
+
+    <script>
+        function predictOutcome() {
+            // Generate a random number (for demonstration purposes)
+            const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+            // Read multipliers from CSV (for demonstration purposes)
+            const csvData = `50,100,150,200,250`;
+            const multipliers = csvData.split(',').map(Number);
+
+            // Your prediction logic goes here
+            // For example, let's say the user predicts the outcome to be "high" if the random number is above a certain multiplier
+            const userPrediction = determinePrediction(randomNumber, multipliers);
+
+            // Display the prediction result on the UI
+            document.getElementById('predictionResult').innerText = userPrediction;
+        }
+
+        function determinePrediction(randomNumber, multipliers) {
+            // Your custom prediction logic goes here
+            // For example, you might compare the random number with each multiplier to determine the prediction
+            for (const multiplier of multipliers) {
+                if (randomNumber > multiplier) {
+                    return `High (Multiplier: ${multiplier})`;
+                }
+            }
+
+            return `Low`;
+        }
+    </script>
+</body>
+</html>
